@@ -21,7 +21,8 @@ export default function App() {
         .then(response => {
           setShow(response.data);
           setSeasons(formatSeasons(response.data._embedded.episodes));
-        });
+        })
+        .catch(error => console.log("Error fetching show...", error));
   }, []);
 
   const handleSelect = e => {
