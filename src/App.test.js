@@ -72,4 +72,4 @@ test("Rendering and selecting...", async () => {
 
   //make sure our fetchShow is called
   expect(mockFetchShow).toHaveBeenCalledTimes(1);
-});
+})
