@@ -119,7 +119,7 @@ test('renders data after API call is made', async () => {
     mockFetchShow.mockResolvedValueOnce(showData)
 
     //first render component with no episode data
-    const { getByText, queryAllByTestId } = render(<App />)
+    const { getByText, queryAllByTestId, queryAllByText } = render(<App />)
 
     //Assert no episodes are displayed
     expect(queryAllByTestId(/episodes/i)).toHaveLength(0)
@@ -132,6 +132,6 @@ test('renders data after API call is made', async () => {
     })
 
     //Assert the episodes display after selecting a season
-    //expect(queryAllByTestId(/episodes/i)).toHaveLength(2)
+    //expect(queryAllByText(/episodes/i)).toHaveLength(2)
 
 })

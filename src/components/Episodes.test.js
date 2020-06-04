@@ -60,6 +60,8 @@ test('renders episodes when episode data is passed down', () => {
     //Re-render component with episodeData
     rerender(<Episodes episodes={episodeData} />)
 
+    //TODO: Check docs to see how to select dropdwon
+
     //Assert the episodeData is in the list
     //expect(queryAllByTestId(/episodes/i)).toHaveLength(2)
 });
