@@ -6,6 +6,7 @@ import App from "./App";
 
 //See this url from our fetch show to see list of episodes
 //  https://api.tvmaze.com/singlesearch/shows?q=stranger-things&embed=episodes
+jest.mock("./api/fetchShow");
 
 const showData = {
   id: 1576470,
@@ -51,25 +52,32 @@ const showData = {
   } //end of embedded
 };
 
-jest.mock("./api/fetchShow");
-
 //See docs: https://jestjs.io/docs/en/mock-function-api
 //See also: https://testing-library.com/docs/react-testing-library/cheatsheet
 test("Rendering and selecting...", async () => {
   mockFetchShow.mockResolvedValueOnce(showData);
 
-  const { findByText, findAllByText } = render(<App />);
-
+  const {  getByText } = render(<App />)
+  getByText(/Fetching Data/i)
   await waitFor(() => {
-    findByText("Select a season");
+    getByText(/select a season/i);
   });
+}); 
+  
+//   //const { findByText, queryAllByText } = render(<App />);
 
-  //test user selection of season
-  //userEvent.click(findByText("Select a season"));
+//   // await waitFor(() => {
+//   //   //queryAllByText(/Select a season/i);
+//   //   expect(findByText("Select a season")).toHaveLength(2);
+//   //   expect(mockFetchShow).toHaveBeenCalledTimes(1);
+//   // });
 
-  //make sure we have data
-  expect(findByText("season")).toHaveLength(2);
+//   //test user selection of season
+//   //userEvent.click(findByText("Select a season"));
 
-  //make sure our fetchShow is called
-  expect(mockFetchShow).toHaveBeenCalledTimes(1);
-})
+//   //make sure we have data
+//   //expect(findByText("Select a season")).toHaveLength(2);
+
+//   //make sure our fetchShow is called
+//   //expect(mockFetchShow).toHaveBeenCalledTimes(1);
+// });
